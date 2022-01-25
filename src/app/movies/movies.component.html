@@ -1,0 +1,66 @@
+<div *ngIf="movies.length>0;else no_movies">
+  <h1>{{title}}</h1>
+  <div class="alert alert-warning"> {{movies.length}} adet film bulundu</div>
+  <ng-template [ngTemplateOutlet]="moveList2" [ngTemplateOutletContext]="{movies: populerMovies}"></ng-template>
+  <ng-template [ngTemplateOutlet]="moveList1"></ng-template>
+</div>
+
+<ng-template #no_movies>
+  <div class="alert alert-warning">
+    Film Bulunamadı
+  </div>
+</ng-template>
+
+<ng-template #moveList1>
+  <div class="card mb-3" *ngFor="let item of movies">
+    <div class="row">
+      <div class="col-md-2">
+        <img src="/assets/img/{{item.imageurl}}" class="img-fluid rounded-start" alt="">
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h2 class="card-title">{{item.title}}</h2>
+          <p class="card-text">{{item.description}}</p>
+          <button class="btn btn-sm btn-outline-primary">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #moveList2 let-filmler="movies">
+ <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+  <div class="col" *ngFor="let item of filmler">
+    
+    <div class="card h-100">
+      <img src="/assets/img/{{item.imageurl}}" class="card-img-top">
+      <div class="car-body">
+        <h5 class="cart-title">{{item.title}}</h5>
+        <p class="cart-text">{{item.description}}</p>
+      </div>
+    </div>
+  </div>
+</div> 
+</ng-template>
+
+<ng-template #moveList3 let-populerFilmler="movies">
+  <h2>Popüler Fimler</h2>
+  <div class="card mb-3" *ngFor="let item of populerFilmler">
+    <div class="row">
+      <div class="col-md-3">
+        <img src="/assets/img/{{item.imageurl}}" class="img-fluid rounded-start" alt="">
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h2 class="card-title">{{item.title}}</h2>
+          <p class="card-text">{{item.description}}</p>
+          <button class="btn btn-sm btn-outline-primary">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!-- <app-movie *ngFor="let item of movies"></app-movie> -->
+<!-- <ul>
+  <li *ngFor="let item of movies">{{item}}</li>
+</ul> -->
